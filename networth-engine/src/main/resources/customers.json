@@ -1,0 +1,63 @@
+[
+  {
+    "userId": "CUST_001",
+    "name": "Sarah Chen",
+    "metadata": { "region": "NAMER", "segment": "Wealth Management" },
+    "portfolio": [
+      { "type": "STOCK", "ticker": "AAPL", "quantity": 150.25, "ccy": "USD" },
+      { "type": "STOCK", "ticker": "MSFT", "quantity": 45, "ccy": "USD" },
+      { "type": "STOCK", "ticker": "GOOGL", "quantity": 10, "ccy": "USD" },
+      { "type": "CRYPTO", "ticker": "BTC", "quantity": 0.75, "ccy": "USD" },
+      { "type": "REAL_ESTATE", "description": "Seattle Condo", "valuation": 850000.00, "ccy": "USD" },
+      { "type": "REAL_ESTATE", "description": "Vacation Home", "valuation": 650000.00, "ccy": "USD" },
+      { "type": "LIABILITY", "description": "Mortgage", "valuation": 420000.00, "ccy": "USD" }
+    ]
+  },
+   {
+    "userId": "CUST_002",
+    "name": "Hiroshi Tanaka",
+    "metadata": { "region": "APAC", "segment": "Retail" },
+    "portfolio": [
+      { "type": "STOCK", "ticker": "TM", "quantity": 1200, "ccy": "JPY" },
+      { "type": "STOCK", "ticker": "SAP", "quantity": 10, "ccy": "EUR" },
+      { "type": "LIABILITY", "description": "Personal Loan", "valuation": 5000000, "ccy": "JPY" },
+      { "type": "LIABILITY", "description": "Credit Card Debt", "valuation": 200000, "ccy": "JPY" },
+      { "type": "REAL_ESTATE", "description": "Tokyo Apartment", "valuation": 30000000, "ccy": "JPY" },
+      { "type": "REAL_ESTATE", "description": "Osaka House", "valuation": 15000000, "ccy": "JPY" }
+    ]
+  },
+    {
+    "userId": "CUST_003",
+    "name": "Elena Rossi",
+    "metadata": { "region": "EMEA", "segment": "High Net Worth" },
+    "portfolio": [
+      { "type": "STOCK", "ticker": "SAP", "quantity": 850.75, "ccy": "EUR" },
+      { "type": "STOCK", "ticker": "BP", "quantity": 2500, "ccy": "GBP" },
+      { "type": "REAL_ESTATE", "description": "Tuscan Vineyard", "valuation": 1250000.00, "ccy": "EUR" },
+      { "type": "LIABILITY", "description": "Business Credit", "valuation": 75000.00, "ccy": "EUR" },
+      { "type": "LIABILITY", "description": "Personal Loan", "valuation": 50000.00, "ccy": "EUR" }
+    ]
+  },
+  {
+    "userId": "CUST_004",
+    "name": "Liam 'Diamond Hands' O'Connor",
+    "metadata": { "region": "EMEA", "segment": "Speculative" },
+    "portfolio": [
+      { "type": "CRYPTO", "ticker": "BTC", "quantity": 0.00452135, "ccy": "USD" },
+      { "type": "CRYPTO", "ticker": "ETH", "quantity": 12.85, "ccy": "USD" },
+      { "type": "STOCK", "ticker": "AAPL", "quantity": 0.5, "ccy": "USD" },
+      { "type": "LIABILITY", "description": "Margin Loan", "valuation": 15000.00, "ccy": "USD" },
+      { "type": "REAL_ESTATE", "description": "Inherited Cottage", "valuation": 200000.00, "ccy": "USD" }
+    ]
+  },
+  {
+    "userId": "CUST_005",
+    "name": "Debt-Ridden Student",
+    "metadata": { "region": "NAMER", "segment": "Retail" },
+    "portfolio": [
+      { "type": "STOCK", "ticker": "MSFT", "quantity": 1.0, "ccy": "USD" },
+      { "type": "LIABILITY", "description": "Student Loan A", "valuation": 45000.00, "ccy": "USD" },
+      { "type": "LIABILITY", "description": "Student Loan B", "valuation": 25000.00, "ccy": "USD" }
+    ]
+  }
+]
