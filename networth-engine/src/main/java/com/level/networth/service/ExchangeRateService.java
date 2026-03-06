@@ -1,4 +1,6 @@
 //Owen-Vurayai
+// Fetches GBP conversion rates from the ExchangeRate API.
+// Falls back to cached_fx_rates.json if the live API is unavailable.
 package com.level.networth.service;
 
 import java.math.BigDecimal;
@@ -20,7 +22,7 @@ public class ExchangeRateService {
     private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper mapper = new ObjectMapper();
 
-    // FX cache file
+    // Local cache to avoid redundant API calls and support offline fallback
     private final Path cachePath = Path.of("src/main/resources/cached_fx_rates.json");
 
     public BigDecimal getRateToGBP(String currency) throws Exception {
