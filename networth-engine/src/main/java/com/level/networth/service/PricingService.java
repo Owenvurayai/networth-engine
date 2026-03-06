@@ -1,5 +1,9 @@
 package com.level.networth.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,113 +14,134 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class PricingService {
 
-    private final String apiKey = System.getenv("CURRENCY_API_KEY");
+    private final String apiKey = System.getenv("FINNHUB_KEY");
+
     private final HttpClient client = HttpClient.newHttpClient();
     private final ObjectMapper mapper = new ObjectMapper();
+
     private final Path cachePath = Path.of("src/main/resources/cached_prices.json");
-    private boolean isCacheAvalable;
+
+    private boolean isCacheAvailable;
     private boolean isApiLive;
 
     public BigDecimal getPrice(String ticker) throws Exception {
+
+        // RESET FLAGS EACH CALL
+        isApiLive = false;
+        isCacheAvailable = false;
+
+        // ── STEP 1: attempt live API — only network errors caught here ──
+        HttpResponse<String> response = null;
         try {
-            // ===== LIVE API CALL =====
-            String url = "https://api.currencyapi.com/v3/latest?apikey="
-                    + apiKey + "&base_currency=" + ticker;
+
+            String url = "https://finnhub.io/api/v1/quote"
+                    + "?symbol=" + ticker
+                    + "&token=" + apiKey;
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .GET()
                     .build();
 
-            HttpResponse<String> response =
-                    client.send(request, HttpResponse.BodyHandlers.ofString());
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            // check if the status of the response is valid 
-            if (response.statusCode() == 200) {
-                isApiLive=true;
-                JsonNode root = mapper.readTree(response.body());
-                double price = root
-                        .get("data")
-                        .get("USD")
-                        .get("value")
-                        .asDouble();
+        } catch (Exception networkError) {
+            //System.err.println("Network error for " + ticker + ": " + networkError.getMessage());
+        }
 
-             
+        // ── STEP 2: parse response if we got one ──
+        if (response != null && response.statusCode() == 200) {
+
+            JsonNode root = mapper.readTree(response.body());
+
+            // Finnhub: "c" = current price, "pc" = previous close
+            // "c" returns 0.0 when market is closed, so we fall back to "pc"
+            double current   = root.has("c")  ? root.get("c").asDouble()  : 0.0;
+            double prevClose = root.has("pc") ? root.get("pc").asDouble() : 0.0;
+
+            double price = current != 0.0 ? current : prevClose;
+
+            if (price != 0.0) {
+
                 BigDecimal result = BigDecimal.valueOf(price);
 
-                // ===== SAVE TO CACHE =====
-                saveToCache(ticker, result); 
-                //System.out.println("Fetched live price for " + ticker);
-              return result;
-               
-            }
-             // If status is not 200, fall through to cache
-            throw new RuntimeException("Unexpected status code: " + response.statusCode());
+                isApiLive = true;
+                saveToCache(ticker, result);
 
-        } catch (Exception e) {
-            // ===== FALLBACK TO CACHE =====
-            BigDecimal cached = loadFromCache(ticker);
-            if (cached != null) {
-                //System.out.println("Using cached price for " + ticker);
-                isCacheAvalable = true;
-                return cached;
+                return result;
             }
-            //System.out.println("No cached price for " + ticker);
-            
-            return BigDecimal.ZERO;
+
+            System.err.println("No valid price in API response for: " + ticker);
         }
-         
+
+        // ── STEP 3: fall back to cache ──
+        BigDecimal cached = loadFromCache(ticker);
+
+        if (cached != null) {
+            isCacheAvailable = true;
+            return cached;
+        }
+
+        return BigDecimal.ZERO;
     }
 
     // =========================
     // SAVE PRICE TO CACHE FILE
     // =========================
-    // ✅ Fixed: removed stray Path parameter — cachePath is already a class field
     private void saveToCache(String ticker, BigDecimal price) {
+
         try {
+
             Map<String, Double> cache = new HashMap<>();
+
             if (Files.exists(cachePath)) {
-                cache = mapper.readValue(cachePath.toFile(), Map.class);
+                cache = mapper.readValue(cachePath.toFile(),
+                        new TypeReference<Map<String, Double>>() {});
             }
+
             cache.put(ticker, price.doubleValue());
+
             mapper.writerWithDefaultPrettyPrinter()
                     .writeValue(cachePath.toFile(), cache);
-        } catch (Exception ignored) {
+
+        } catch (Exception e) {
+            System.err.println("Cache write failed for " + ticker + ": " + e.getMessage());
         }
     }
 
     // =========================
     // LOAD PRICE FROM CACHE
     // =========================
-    private BigDecimal loadFromCache(String ticker)throws Exception {
+    private BigDecimal loadFromCache(String ticker) {
+
         try {
-        if (!Files.exists(cachePath)){
-                throw new Exception("Please connect your pc to the wifi....");
-           }
-            Map<String, Double> cache = mapper.readValue(cachePath.toFile(), Map.class);
+
+            if (!Files.exists(cachePath)) {
+                System.err.println("No cache file found. Please connect to WiFi first.");
+                return null;
+            }
+
+            Map<String, Double> cache = mapper.readValue(cachePath.toFile(),
+                    new TypeReference<Map<String, Double>>() {});
+
             if (cache.containsKey(ticker)) {
                 return BigDecimal.valueOf(cache.get(ticker));
             }
 
-        }catch(Exception e){
-          throw new Exception(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Cache read failed: " + e.getMessage());
         }
-                   
+
         return null;
     }
-    
-    public boolean getIsCacheAvalable()
-    {
-     return isCacheAvalable;
+
+    public boolean getIsCacheAvailable() {
+        return isCacheAvailable;
     }
-    
-    public boolean getIsApiLive()
-    {
-     return isApiLive;
+
+    public boolean getIsApiLive() {
+        return isApiLive;
     }
-}   
+}

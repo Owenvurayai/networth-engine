@@ -1,7 +1,9 @@
+com/level/networth/service/PricingService$1.class
 com/level/networth/model/PortfolioItem.class
 com/level/networth/service/CacheService.class
 com/level/networth/service/ExchangeRateService.class
 com/level/networth/service/PricingService.class
+com/level/networth/service/PricingService$2.class
 com/level/networth/service/NetWorthCalculator.class
 com/level/networth/Main$1.class
 com/level/networth/Main.class
