@@ -1,4 +1,6 @@
 //Owen-Vurayai
+// Fetches GBP conversion rates from the ExchangeRate API.
+// Falls back to cached_fx_rates.json if the live API is unavailable.
 package com.level.networth.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
