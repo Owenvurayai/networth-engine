@@ -1,4 +1,6 @@
 //Owen-Vurayai
+// Orchestrates the net worth calculation for a single customer.
+// Delegates pricing to PricingService and FX conversion to ExchangeRateService.
 package com.level.networth.service;
 
 import com.level.networth.model.*;
@@ -17,7 +19,7 @@ public class NetWorthCalculator {
 
         BigDecimal totalAssets = BigDecimal.ZERO;
         BigDecimal totalLiabilities = BigDecimal.ZERO;
-        boolean estimatedReport = false;
+        boolean estimatedReport = false; // Flipped to true if any price came from cache
 
         System.out.println("----------------------------------");
         System.out.println("User: " + customer.name);
@@ -32,7 +34,7 @@ public class NetWorthCalculator {
 
                     BigDecimal price = pricingService.getPrice(item.ticker);
 
-                    // If both live API and cache failed
+                    // Abort if both live API and cache failed
                     if (price == null || price.compareTo(BigDecimal.ZERO) == 0) {
                         System.out.println("Missing price for " + item.ticker + ". Calculation aborted.");
                         return;
@@ -42,7 +44,7 @@ public class NetWorthCalculator {
                     if (pricingService.getIsCacheAvailable() && !pricingService.getIsApiLive()) {
                         estimatedReport = true;
                     }
-
+                    // Quantity x price in local currency, then convert to GBP
                     BigDecimal localValue = MoneyUtils.multiply(item.quantity, price);
 
                     BigDecimal rate = getFxRate(item.ccy);
@@ -59,7 +61,8 @@ public class NetWorthCalculator {
                     value = MoneyUtils.toGBP(localValue, rate);
 
                 } else {
-
+                   
+                    // PROPERTY and LIABILITY use a fixed valuation rather than a live price
                     BigDecimal rate = getFxRate(item.ccy);
 
                     if (rate == null) {
@@ -75,7 +78,8 @@ public class NetWorthCalculator {
                 System.err.println("Error detail: " + e.getMessage());
                 return;
             }
-
+            
+            // Accumulate into the correct bucket
             if (item.type == AssetType.LIABILITY) {
                 totalLiabilities = totalLiabilities.add(value);
             } else {
