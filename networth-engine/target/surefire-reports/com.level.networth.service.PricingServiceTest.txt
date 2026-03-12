@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.level.networth.service.PricingServiceTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.977 s -- in com.level.networth.service.PricingServiceTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.521 s -- in com.level.networth.service.PricingServiceTest

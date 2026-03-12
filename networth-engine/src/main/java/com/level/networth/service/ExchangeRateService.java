@@ -19,11 +19,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExchangeRateService {
 
     private final String apiKey = System.getenv("EXCHANGE_API_KEY");
-    private final HttpClient client = HttpClient.newHttpClient();
+    private final HttpClient client;
     private final ObjectMapper mapper = new ObjectMapper();
 
     // Local cache to avoid redundant API calls and support offline fallback
     private final Path cachePath = Path.of("src/main/resources/cached_fx_rates.json");
+    
+    // defualt constructor
+    public ExchangeRateService() {
+    this.client = HttpClient.newHttpClient();
+}
+
+   // used for testing purposes 
+    public ExchangeRateService(HttpClient client) {
+    this.client = client;
+    }
 
     public BigDecimal getRateToGBP(String currency) throws Exception {
 
