@@ -3,7 +3,6 @@
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/model/Customer.java
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/model/PortFolioItem.java
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/model/PortfolioItem.java
-/home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/service/CacheService.java
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/service/ExchangeRateService.java
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/service/NetWorthCalculator.java
 /home/owen_vurayai/MyRepo/networth-engine/networth-engine/src/main/java/com/level/networth/service/PricingService.java

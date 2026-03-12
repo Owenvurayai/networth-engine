@@ -1,6 +1,5 @@
 com/level/networth/service/PricingService$1.class
 com/level/networth/model/PortfolioItem.class
-com/level/networth/service/CacheService.class
 com/level/networth/service/ExchangeRateService.class
 com/level/networth/service/PricingService.class
 com/level/networth/service/PricingService$2.class
@@ -11,4 +10,3 @@ com/level/networth/util/MoneyUtils.class
 com/level/networth/model/AssetType.class
 com/level/networth/model/Customer.class
 com/level/networth/model/Customer$Metadata.class
-com/level/networth/service/CacheService$1.class

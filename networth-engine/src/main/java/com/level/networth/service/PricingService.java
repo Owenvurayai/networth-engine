@@ -21,13 +21,23 @@ public class PricingService {
 
     private final String apiKey = System.getenv("FINNHUB_KEY");
 
-    private final HttpClient client = HttpClient.newHttpClient();
+    //private final HttpClient client = HttpClient.newHttpClient();
+    private final HttpClient client;
     private final ObjectMapper mapper = new ObjectMapper();
 
     private final Path cachePath = Path.of("src/main/resources/cached_prices.json");
 
     private boolean isCacheAvailable;
     private boolean isApiLive;
+    
+    public PricingService() {
+    this.client = HttpClient.newHttpClient();
+    }
+    
+    //constructor used  for testing:
+    public PricingService(HttpClient client) {
+         this.client = client;
+      }
 
     public BigDecimal getPrice(String ticker) throws Exception {
 
