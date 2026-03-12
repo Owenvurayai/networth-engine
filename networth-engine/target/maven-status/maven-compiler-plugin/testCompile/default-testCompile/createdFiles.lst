@@ -1,2 +1,3 @@
 com/level/networth/service/PricingServiceTest.class
 com/level/networth/service/ExchangeRateServiceTest.class
+com/level/networth/service/NetWorthCalculatorTest.class

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.level.networth.service.PricingServiceTest" time="4.078" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.level.networth.service.PricingServiceTest" time="4.144" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire/surefirebooter-20260312083037967_3.jar /home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire 2026-03-12T08-30-37_149-jvmRun1 surefire-20260312083037967_1tmp surefire_0-20260312083037967_2tmp"/>
+    <property name="sun.java.command" value="/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire/surefirebooter-20260312085427625_3.jar /home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire 2026-03-12T08-54-27_267-jvmRun1 surefire-20260312085427625_1tmp surefire_0-20260312085427625_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/test-classes:/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/classes:/home/owen_vurayai/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.0/jackson-databind-2.17.0.jar:/home/owen_vurayai/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.0/jackson-annotations-2.17.0.jar:/home/owen_vurayai/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.0/jackson-core-2.17.0.jar:/home/owen_vurayai/.m2/repository/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar:/home/owen_vurayai/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/home/owen_vurayai/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/home/owen_vurayai/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/owen_vurayai/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/home/owen_vurayai/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/owen_vurayai/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/home/owen_vurayai/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/home/owen_vurayai/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/home/owen_vurayai/.m2/repository/org/mockito/mockito-core/5.5.0/mockito-core-5.5.0.jar:/home/owen_vurayai/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.6/byte-buddy-agent-1.14.6.jar:/home/owen_vurayai/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/owen_vurayai/.m2/repository/org/mockito/mockito-junit-jupiter/5.5.0/mockito-junit-jupiter-5.5.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire/surefirebooter-20260312083037967_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/owen_vurayai/MyRepo/networth-engine/networth-engine/target/surefire/surefirebooter-20260312085427625_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.10+7-Ubuntu-122.04"/>
     <property name="user.name" value="owen_vurayai"/>
@@ -53,17 +53,17 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="getPrice_networkFails_fallsBackToCache" classname="com.level.networth.service.PricingServiceTest" time="3.715">
+  <testcase name="getPrice_networkFails_fallsBackToCache" classname="com.level.networth.service.PricingServiceTest" time="3.683">
     <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/owen_vurayai/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.6/byte-buddy-agent-1.14.6.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 ]]></system-err>
   </testcase>
-  <testcase name="getPrice_apiAndCacheBothFail_returnsZero" classname="com.level.networth.service.PricingServiceTest" time="0.03">
+  <testcase name="getPrice_apiAndCacheBothFail_returnsZero" classname="com.level.networth.service.PricingServiceTest" time="0.013">
     <system-err><![CDATA[No cache file found. Please connect to WiFi first.
 ]]></system-err>
   </testcase>
-  <testcase name="getPrice_liveApiReturnsCurrentPrice" classname="com.level.networth.service.PricingServiceTest" time="0.233"/>
-  <testcase name="getPrice_marketClosed_fallsBackToPreviousClose" classname="com.level.networth.service.PricingServiceTest" time="0.014"/>
+  <testcase name="getPrice_liveApiReturnsCurrentPrice" classname="com.level.networth.service.PricingServiceTest" time="0.277"/>
+  <testcase name="getPrice_marketClosed_fallsBackToPreviousClose" classname="com.level.networth.service.PricingServiceTest" time="0.055"/>
 </testsuite>

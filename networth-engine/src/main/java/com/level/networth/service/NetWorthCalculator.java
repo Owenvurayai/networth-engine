@@ -10,8 +10,19 @@ import java.math.BigDecimal;
 
 public class NetWorthCalculator {
 
-    private final PricingService pricingService = new PricingService();
-    private final ExchangeRateService exchangeRateService = new ExchangeRateService();
+   private final PricingService pricingService;
+   private final ExchangeRateService exchangeRateService;
+   
+   public NetWorthCalculator() {
+    this.pricingService = new PricingService();
+    this.exchangeRateService = new ExchangeRateService();
+   }
+
+
+public NetWorthCalculator(PricingService pricingService, ExchangeRateService exchangeRateService) {
+    this.pricingService = pricingService;
+    this.exchangeRateService = exchangeRateService;
+}
 
     // CacheService removed — PricingService now manages its own cache internally
 
